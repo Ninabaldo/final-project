@@ -14,14 +14,15 @@ const authRouter = require("./routes/auth.routes");
 app.use("/api/auth", authRouter);
 const allRoutes = require("./routes");
 app.use("/api", allRoutes);
-
+const colorRoutes = require("./routes/colors.routes");
+app.use("/api", colorRoutes);
 
 
 const projectRouter = require("./routes/project.routes");
-app.use("/api", isAuthenticated, projectRouter);            // <== UPDATE
+app.use("/api", projectRouter);            // <== UPDATE
 
 const taskRouter = require("./routes/task.routes");
-app.use("/api",isAuthenticated, taskRouter);            // <== UPDATE
+app.use("/api", taskRouter);            // <== UPDATE
 
 
 //app.use((req, res, next) => {
