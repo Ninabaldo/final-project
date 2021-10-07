@@ -4,7 +4,7 @@ const { Schema, model } = require("mongoose");
 
 const colorSchema = new Schema({
   color:String,
-  img:String
+  image:String
   
   
 },{

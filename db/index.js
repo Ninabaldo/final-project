@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/project-management-server";
 
 mongoose
-  .connect(MONGO_URI, {
+  .connect("mongodb+srv://prueba:prueba@cluster0.eu48d.mongodb.net/myFirstDatabase",{
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
