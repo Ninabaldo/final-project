@@ -7,6 +7,7 @@ const { isAuthenticated } = require("./middleware/jwt.middleware"); // <== IMPOR
 
 const app = express();
 require("./config")(app);
+require("./config/cors.config")(app);
 
 
 // 👇 MIDDLEWARE MISSING
@@ -26,8 +27,8 @@ app.use("/api", taskRouter);            // <== UPDATE
 
 
 //app.use((req, res, next) => {
-    // If no routes match, send them the React HTML.
-  //  res.sendFile(__dirname + "/public/index.html");
+// If no routes match, send them the React HTML.
+//  res.sendFile(__dirname + "/public/index.html");
 //  });
 
 require("./error-handling")(app);
