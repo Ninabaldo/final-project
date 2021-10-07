@@ -26,7 +26,7 @@ router.post('/signup', (req, res, next) => {
     res.status(400).json({ message: 'Provide a valid email address.' });
     return;
   }
-  
+
   // Use regex to validate the password format
   const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
   if (!passwordRegex.test(password)) {
@@ -56,12 +56,12 @@ router.post('/signup', (req, res, next) => {
       // Deconstruct the newly created user object to omit the password
       // We should never expose passwords publicly
       const { email, name, _id } = createdUser;
-    
+
       // Create a new object that doesn't expose the password
       const user = { email, name, _id };
 
       // Send a json response containing the user object
-      res.status(201).json({ user: user });
+      res.header("Access-Control-Allow-Origin", "*").status(201).json({ user: user });
     })
     .catch(err => {
       console.log(err);
@@ -83,7 +83,7 @@ router.post('/login', (req, res, next) => {
   // Check the users collection if a user with the same email exists
   User.findOne({ email })
     .then((foundUser) => {
-    
+
       if (!foundUser) {
         // If the user is not found, send an error response
         res.status(401).json({ message: "User not found." })
@@ -96,12 +96,12 @@ router.post('/login', (req, res, next) => {
       if (passwordCorrect) {
         // Deconstruct the user object to omit the password
         const { _id, email, name } = foundUser;
-        req.user= foundUser
+        req.user = foundUser
         // Create an object that will be set as the token payload
         const payload = { _id, email, name };
 
         // Create and sign the token
-        const authToken = jwt.sign( 
+        const authToken = jwt.sign(
           payload,
           process.env.TOKEN_SECRET,
           { algorithm: 'HS256', expiresIn: "6h" }
