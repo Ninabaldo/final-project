@@ -7,7 +7,7 @@ const { isAuthenticated } = require("./middleware/jwt.middleware"); // <== IMPOR
 
 const app = express();
 require("./config")(app);
-require("./config/cors.config")(app);
+
 
 
 // 👇 MIDDLEWARE MISSING
